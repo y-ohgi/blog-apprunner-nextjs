@@ -1,0 +1,9 @@
+{
+  "ImageRepository": {
+    "ImageIdentifier": "<REPOSITORY_URL>",
+    "ImageConfiguration": {
+      "Port": "3000"
+    },
+    "ImageRepositoryType": "ECR"
+  }
+}
