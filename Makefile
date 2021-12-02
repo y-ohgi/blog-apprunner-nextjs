@@ -1,10 +1,12 @@
-REPOSITORY_URL := 855200245635.dkr.ecr.ap-northeast-1.amazonaws.com/app-next
-APPRUNNER_ARN  := arn:aws:apprunner:ap-northeast-1:855200245635:service/app-next/b7195e9985834e579a423337ad3d644a
+APPRUNNER_ARN  := <YOUR APPRUNNER ARN>
+REPOSITORY_URL := $(shell aws ecr describe-repositories --repository-name remix-app --region ap-northeast-1 --query="repositories[0].repositoryUri" --output=text)
+TAG            := $(git rev-parse --short HEAD)
 
 CMD_TERRAFORM = docker run \
 	-v $(HOME)/.aws/:/root/.aws:ro \
 	-v `pwd`:/app \
 	-w /app/infra \
+	-e TF_VAR_repository_url=$(REPOSITORY_URL) \
 	-it \
 	hashicorp/terraform:1.0.11
 

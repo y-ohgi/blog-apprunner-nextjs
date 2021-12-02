@@ -1,4 +1,3 @@
-variable "name" {
-  description = "プロジェクト名"
-  default     = "app-next"
+variable "repository_url" {
+  description = "ECR のURL"
 }
